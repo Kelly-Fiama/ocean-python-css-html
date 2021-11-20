@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Meu blog em Flask</title>
+    </head>
+    <body>
+        <h1>Meu blog em Flask</h1>
+        {% if not session.logado %}
+            <form method="POST" action="{{url_for('inserir_entrada')}}">
+                <dl>
+                    <dt>Título</dt>
+                    <dd><input type="text" size="30" name="titulo"/></dd>
+                    <dt>Texto</dt>
+                    <dd><textarea rows="5" cols="40" name="texto"></textarea></dd>
+                    <dd><input type="submit" value="Publicar"/></dd>
+                </dl>
+            </form>
+        {% endif %}
+
+        <ul>
+            {% for entrada in entradas %}
+            <li>
+                <h2>{{ entrada.titulo }}</h2>
+                <p>{{ entrada.texto }}</p>
+            </li>
+            {% else %}
+            <li><em>Você ainda não possui entradas no seu blog</em></li>
+            {% endfor %}
+        </ul>
+
+</body>
+</html>
+
